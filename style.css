@@ -1,0 +1,432 @@
+/* ============================================================
+   DEAD BY DAYLIGHT — 10th Anniversary Cake Tracker
+   Theme: Obsidian black, Entity red, ash white accents
+   ============================================================ */
+
+:root {
+  --bg:          #0a0a0b;
+  --surface:     #111114;
+  --surface2:    #1a1a1f;
+  --border:      #2a0a0a;
+  --red:         #c0131a;
+  --red-bright:  #e82929;
+  --red-glow:    #ff2233;
+  --red-dim:     #6b0a0e;
+  --ash:         #d4cfc8;
+  --ash-dim:     #7a756e;
+  --hook:        #c0131a;
+  --font-display: 'Cinzel', serif;
+  --font-mono:    'Share Tech Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ash);
+  font-family: var(--font-mono);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Ambient fog texture */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(192,19,26,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 50% 110%, rgba(192,19,26,0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── LOADER ─────────────────────────────────────────────── */
+
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: opacity 0.8s ease;
+}
+
+#loader.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-inner {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.loader-hook {
+  font-size: 4rem;
+  color: var(--red);
+  animation: hookPulse 1.6s ease-in-out infinite;
+  text-shadow: 0 0 30px var(--red-glow), 0 0 60px rgba(255,34,51,0.4);
+  line-height: 1;
+}
+
+@keyframes hookPulse {
+  0%, 100% { transform: translateY(0) scale(1);   opacity: 0.8; }
+  50%       { transform: translateY(-8px) scale(1.08); opacity: 1; }
+}
+
+.loader-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  color: var(--ash);
+  text-shadow: 0 0 20px rgba(255,34,51,0.3);
+}
+
+.loader-subtitle {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.5em;
+  color: var(--red);
+  text-transform: uppercase;
+}
+
+.loader-subtitle sup { font-size: 0.6em; vertical-align: super; }
+
+.loader-bar-wrap {
+  width: 280px;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.loader-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--red-dim), var(--red-bright));
+  box-shadow: 0 0 12px var(--red-glow);
+  transition: width 0.25s ease;
+}
+
+.loader-msg {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--ash-dim);
+  letter-spacing: 0.08em;
+  min-height: 1.2em;
+}
+
+/* ── APP ────────────────────────────────────────────────── */
+
+#app {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+#app.hidden { display: none; }
+
+/* ── HEADER ─────────────────────────────────────────────── */
+
+header {
+  text-align: center;
+  padding: 48px 0 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 48px;
+  position: relative;
+}
+
+.header-emblem {
+  font-size: 3rem;
+  color: var(--red);
+  text-shadow: 0 0 24px var(--red-glow), 0 0 48px rgba(255,34,51,0.3);
+  display: block;
+  margin-bottom: 12px;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: var(--ash);
+  text-shadow: 0 0 30px rgba(255,34,51,0.2);
+  line-height: 1.1;
+}
+
+h1 sup { font-size: 0.45em; vertical-align: super; color: var(--red); }
+
+.header-sub {
+  margin-top: 10px;
+  color: var(--ash-dim);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ── TABLE SECTIONS ─────────────────────────────────────── */
+
+.table-section {
+  margin-bottom: 56px;
+  position: relative;
+}
+
+.table-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--red-bright);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--red-dim);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.table-title::before {
+  content: '☩';
+  font-size: 1em;
+  opacity: 0.7;
+}
+
+.table-wrap {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--surface);
+  transition: box-shadow 0.4s ease;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead tr {
+  background: linear-gradient(90deg, #1a0505, #150303);
+  border-bottom: 1px solid var(--red-dim);
+}
+
+thead th {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ash-dim);
+  padding: 12px 18px;
+  text-align: left;
+}
+
+thead th:not(:first-child) { text-align: center; }
+
+tbody tr {
+  border-bottom: 1px solid #1a1a1f;
+  transition: background 0.2s;
+}
+
+tbody tr:last-child { border-bottom: none; }
+
+tbody tr:hover { background: var(--surface2); }
+
+td {
+  padding: 13px 18px;
+  font-size: 0.88rem;
+}
+
+.survivor-name {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--ash);
+  letter-spacing: 0.06em;
+}
+
+.stat-cell {
+  text-align: center;
+  color: var(--ash-dim);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+/* ── MILESTONE EFFECTS ──────────────────────────────────── */
+
+/* tier-1: 100–300 — subtle red glow on table */
+.table-wrap.milestone-t1 {
+  box-shadow: 0 0 20px rgba(192,19,26,0.25), 0 0 60px rgba(192,19,26,0.08);
+  border-color: var(--red-dim);
+}
+
+/* tier-2: 400–600 — pulsing border */
+.table-wrap.milestone-t2 {
+  box-shadow: 0 0 30px rgba(232,41,41,0.4), 0 0 80px rgba(192,19,26,0.15);
+  border-color: var(--red);
+  animation: pulseBorder 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseBorder {
+  0%,100% { box-shadow: 0 0 30px rgba(232,41,41,0.4), 0 0 80px rgba(192,19,26,0.15); }
+  50%      { box-shadow: 0 0 50px rgba(232,41,41,0.65), 0 0 120px rgba(192,19,26,0.25); }
+}
+
+/* tier-3: 700–900 — blood drip scanlines + intense glow */
+.table-wrap.milestone-t3 {
+  box-shadow: 0 0 50px rgba(232,41,41,0.6), 0 0 120px rgba(192,19,26,0.35), inset 0 0 30px rgba(192,19,26,0.08);
+  border-color: var(--red-bright);
+  animation: pulseBorder3 1.8s ease-in-out infinite;
+}
+
+@keyframes pulseBorder3 {
+  0%,100% { box-shadow: 0 0 50px rgba(232,41,41,0.6), 0 0 120px rgba(192,19,26,0.35), inset 0 0 30px rgba(192,19,26,0.08); }
+  50%      { box-shadow: 0 0 80px rgba(255,34,51,0.85), 0 0 180px rgba(232,41,41,0.45), inset 0 0 50px rgba(192,19,26,0.15); }
+}
+
+.table-wrap.milestone-t3::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(192,19,26,0.03) 3px,
+    rgba(192,19,26,0.03) 4px
+  );
+  pointer-events: none;
+  animation: scanMove 6s linear infinite;
+}
+
+@keyframes scanMove {
+  from { background-position: 0 0; }
+  to   { background-position: 0 -80px; }
+}
+
+/* tier-4: 1000+ — full Entity awakening */
+.table-wrap.milestone-t4 {
+  border-color: var(--red-glow);
+  animation: entityAwaken 1.2s ease-in-out infinite;
+}
+
+@keyframes entityAwaken {
+  0%   { box-shadow: 0 0 60px rgba(255,34,51,0.7), 0 0 140px rgba(232,41,41,0.4), inset 0 0 60px rgba(192,19,26,0.12); }
+  50%  { box-shadow: 0 0 100px rgba(255,34,51,1.0), 0 0 220px rgba(232,41,41,0.65), inset 0 0 90px rgba(192,19,26,0.2); }
+  100% { box-shadow: 0 0 60px rgba(255,34,51,0.7), 0 0 140px rgba(232,41,41,0.4), inset 0 0 60px rgba(192,19,26,0.12); }
+}
+
+.table-wrap.milestone-t4::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255,34,51,0.04) 2px,
+      rgba(255,34,51,0.04) 3px
+    );
+  pointer-events: none;
+  animation: scanMove 3s linear infinite;
+  z-index: 2;
+}
+
+/* tier-5: 2000+ — catastrophic */
+.table-wrap.milestone-t5 {
+  border-color: var(--red-glow);
+  animation: catastrophe 0.9s ease-in-out infinite;
+}
+
+@keyframes catastrophe {
+  0%,100% {
+    box-shadow:
+      0 0 100px rgba(255,34,51,0.9),
+      0 0 260px rgba(232,41,41,0.6),
+      0 0 400px rgba(192,19,26,0.3),
+      inset 0 0 100px rgba(192,19,26,0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 140px rgba(255,34,51,1),
+      0 0 320px rgba(232,41,41,0.8),
+      0 0 500px rgba(192,19,26,0.45),
+      inset 0 0 140px rgba(192,19,26,0.3);
+    filter: hue-rotate(5deg);
+  }
+}
+
+.table-wrap.milestone-t5 thead tr {
+  animation: headFlicker 1.8s ease-in-out infinite;
+}
+
+@keyframes headFlicker {
+  0%,95%,100% { opacity: 1; }
+  96% { opacity: 0.7; }
+  97% { opacity: 1; }
+  98% { opacity: 0.5; }
+}
+
+/* milestone banner label */
+.milestone-banner {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--red-bright);
+  text-align: center;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  text-shadow: 0 0 12px var(--red-glow);
+}
+
+.milestone-banner.visible {
+  max-height: 40px;
+  padding: 8px 0;
+  border-top: 1px solid var(--red-dim);
+}
+
+/* ── STAT CELLS — milestone number highlight ────────────── */
+.stat-cell.is-milestone {
+  color: var(--red-bright);
+  text-shadow: 0 0 10px var(--red-glow);
+  font-weight: bold;
+}
+
+/* ── FOOTER ─────────────────────────────────────────────── */
+
+footer {
+  text-align: center;
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  color: #3a3530;
+  text-transform: uppercase;
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────── */
+
+@media (max-width: 560px) {
+  td, th { padding: 10px 10px; font-size: 0.78rem; }
+  h1 { font-size: 1.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

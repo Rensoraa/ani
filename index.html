@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DBD 10th Anniversary — Cake Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- LOADER -->
+  <div id="loader">
+    <div class="loader-inner">
+      <div class="loader-hook">&#x2626;</div>
+      <div class="loader-title">Dead by Daylight</div>
+      <div class="loader-subtitle">10<sup>th</sup> Anniversary</div>
+      <div class="loader-bar-wrap"><div class="loader-bar" id="loaderBar"></div></div>
+      <div class="loader-msg" id="loaderMsg">Waking the Entity…</div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div id="app" class="hidden">
+
+    <header>
+      <div class="header-emblem">&#x2626;</div>
+      <h1>10<sup>th</sup> Anniversary</h1>
+      <p class="header-sub">Cake &amp; Item Tracker — The Entity is watching</p>
+    </header>
+
+    <!-- TABLE 1: Kevin's -->
+    <section class="table-section" id="section-kevin">
+      <h2 class="table-title">Kevin's Cake / Item Stats</h2>
+      <div class="table-wrap" id="table-kevin">
+        <table>
+          <thead>
+            <tr>
+              <th>Survivor</th>
+              <th>🎂 Cakes</th>
+              <th>🔦 Flashlights</th>
+              <th>💊 Medkits</th>
+              <th>🔧 Toolboxes</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-kevin">
+            <tr>
+              <td class="survivor-name">Mikaela</td>
+              <td class="stat-cell" data-val="25">25</td>
+              <td class="stat-cell" data-val="22">22</td>
+              <td class="stat-cell" data-val="24">24</td>
+              <td class="stat-cell" data-val="24">24</td>
+            </tr>
+            <tr>
+              <td class="survivor-name">Vee</td>
+              <td class="stat-cell" data-val="72">72</td>
+              <td class="stat-cell" data-val="39">39</td>
+              <td class="stat-cell" data-val="46">46</td>
+              <td class="stat-cell" data-val="47">47</td>
+            </tr>
+            <tr>
+              <td class="survivor-name">Yui</td>
+              <td class="stat-cell" data-val="15">15</td>
+              <td class="stat-cell" data-val="14">14</td>
+              <td class="stat-cell" data-val="16">16</td>
+              <td class="stat-cell" data-val="14">14</td>
+            </tr>
+            <tr>
+              <td class="survivor-name">Renato</td>
+              <td class="stat-cell" data-val="12">12</td>
+              <td class="stat-cell" data-val="11">11</td>
+              <td class="stat-cell" data-val="11">11</td>
+              <td class="stat-cell" data-val="10">10</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="milestone-banner" id="milestone-kevin"></div>
+      </div>
+    </section>
+
+    <!-- TABLE 2: Rensora's -->
+    <section class="table-section" id="section-rensora">
+      <h2 class="table-title">Rensora's Cake / Item Stats</h2>
+      <div class="table-wrap" id="table-rensora">
+        <table>
+          <thead>
+            <tr>
+              <th>Survivor</th>
+              <th>🎂 Cakes</th>
+              <th>🔦 Flashlights</th>
+              <th>💊 Medkits</th>
+              <th>🔧 Toolboxes</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-rensora">
+            <tr>
+              <td class="survivor-name">Blight</td>
+              <td class="stat-cell" data-val="47">47</td>
+              <td class="stat-cell" data-val="0">N/A</td>
+              <td class="stat-cell" data-val="0">N/A</td>
+              <td class="stat-cell" data-val="0">N/A</td>
+            </tr>
+            <tr>
+              <td class="survivor-name">Nancy</td>
+              <td class="stat-cell" data-val="60">60</td>
+              <td class="stat-cell" data-val="0">0</td>
+              <td class="stat-cell" data-val="0">0</td>
+              <td class="stat-cell" data-val="0">0</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="milestone-banner" id="milestone-rensora"></div>
+      </div>
+    </section>
+
+    <footer>
+      <span>Dead by Daylight™ — 10th Anniversary Fan Tracker<br><a href="https://rensoraa.github.io" target="_blank">Powered by Rensora</a></span>
+    </footer>
+
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
